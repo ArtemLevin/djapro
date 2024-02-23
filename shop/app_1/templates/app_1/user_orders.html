@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.name }}'s Orders{% endblock %}
+
+{% block content %}
+    <h2>Here is {{ user.name }} orders sorted by date</h2>
+    <table>
+        {% for order in orders %}
+            <tr><td><h1>{{ order.id }}</h1></td>
+                <td>{{ order.order_date }}</td>
+                <td><h2>{{ order.show_all_products }}</h2></td>
+                <td>{{ order.total_price }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h1> Products ordered less 7 days ago </h1>
+    {% for order in orders_7 %}
+            {{ order.show_all_products }}
+            {{ order.id }}
+    {% endfor %}
+    <h1> Products ordered less 30 days ago </h1>
+    {% for order in orders_30 %}
+            {{ order.show_all_products }}
+{{ order.id}}
+    {% endfor %}
+    <h1> Products ordered less 365 days ago </h1>
+    {% for order in orders_365 %}
+            {{ order.show_all_products }}
+{{ order.id}}
+    {% endfor %}
+{% endblock %}
